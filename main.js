@@ -95,7 +95,7 @@ const makeAuth = (newPassport) => {
     return (req, res, next) => {
         newPassport.authenticate('local',
             (err, user, info) => {
-                if(err != null) {
+                if((err != null) || !user) {
                     res.status(401).contentType('application/json').json({ error: err });
                     return;
                 }
